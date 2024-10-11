@@ -2,8 +2,9 @@ import css from "./Contact.module.css";
 import { FaPhoneAlt } from "react-icons/fa";
 import { BsFillPersonFill } from "react-icons/bs";
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contactsSlice";
+// import { deleteContact } from "../../redux/contactsSlice";
 import { BsTrash3 } from "react-icons/bs";
+import { deleteContacts } from "../../redux/contactsOps";
 
 const Contact = ({ id, name, number }) => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const Contact = ({ id, name, number }) => {
       </div>
       <button
         className={css.button}
-        onClick={() => dispatch(deleteContact(id))}
+        onClick={() => dispatch(deleteContacts(id))}
       >
         <BsTrash3 size="20" />
       </button>

@@ -2,14 +2,17 @@ import { Field, Form, Formik } from "formik";
 import css from "./ContactForm.module.css";
 import * as Yup from "yup";
 import { ErrorMessage } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addContacts } from "../../redux/contactsOps";
+import { selectError } from "../../redux/contactsSlice";
 
 const ContactForm = () => {
   const initialValue = {
     number: "",
     name: "",
   };
+
+  const isError = useSelector(selectError);
 
   const dispatch = useDispatch();
 
@@ -55,7 +58,10 @@ const ContactForm = () => {
             />
             <Field className={css.field} type="text" name="number" />
           </label>
-          <button className={css.btn} type="submit">
+          <button
+            className={`${!isError ? css.btnActive : css.btnDisabled}`}
+            type="submit"
+          >
             Add contact
           </button>
         </Form>

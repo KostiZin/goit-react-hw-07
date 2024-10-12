@@ -22,7 +22,7 @@
   height: 28px;
 }
 
-.btn {
+.btnActive {
   margin: 6px;
   height: 36px;
   padding: 4px 10px;
@@ -36,6 +36,17 @@
     font-weight: bold;
     cursor: pointer;
   }
+}
+
+.btnDisabled {
+  margin: 6px;
+  height: 36px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background-color: rgb(212, 210, 208);
+  border: 1px solid rgb(107, 104, 104);
+  transition: 0.4s ease;
+  pointer-events: none;
 }
 
 .error {

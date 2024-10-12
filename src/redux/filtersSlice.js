@@ -9,6 +9,8 @@ const initialState = {
 const slice = createSlice({
   name: "filters",
   initialState,
+  //we use regular reducers because we use data locally
+  //we filter what we already received from the server
   reducers: {
     changeFilter: (state, action) => {
       state.filters.name = action.payload;

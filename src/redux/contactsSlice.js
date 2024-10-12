@@ -13,6 +13,8 @@ const initialState = {
 const slice = createSlice({
   name: "contacts",
   initialState,
+
+  //============= regular reducers work locally ===========
   // reducers: {
   //   fetchDataSuccess: (state, action) => {
   //     state.contacts.items = action.payload;
@@ -34,18 +36,20 @@ const slice = createSlice({
   //     );
   //   },
   // },
+
+  //============= extraReducers work with server (backend) ===========
   extraReducers: (builder) => {
     builder
       .addCase(fetchContacts.fulfilled, (state, action) => {
         state.contacts.items = action.payload;
       })
+      .addCase(addContacts.fulfilled, (state, action) => {
+        state.contacts.items.push(action.payload);
+      })
       .addCase(deleteContacts.fulfilled, (state, action) => {
         state.contacts.items = state.contacts.items.filter(
           (contact) => contact.id !== action.payload
         );
-      })
-      .addCase(addContacts.fulfilled, (state, action) => {
-        state.contacts.items.push(action.payload);
       });
   },
 });

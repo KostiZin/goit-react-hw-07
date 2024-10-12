@@ -14,6 +14,8 @@ const SearchBox = () => {
         className={css.input}
         type="text"
         value={input}
+        // onChange={(e) => changeFilter(e.target.value)}
+
         onChange={(e) => dispatch(changeFilter(e.target.value))}
       />
     </div>

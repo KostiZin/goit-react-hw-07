@@ -21,7 +21,7 @@ function App() {
         <h1>Phonebook</h1>
         <ContactForm />
         <SearchBox />
-        {loader && <h2>Loading...</h2>}
+        {/* {loader && <h2>Loading...</h2>} */}
         <ContactList />
       </div>
     </>

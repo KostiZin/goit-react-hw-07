@@ -1,6 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { changeFilter } from "./contactsOps";
-// import changeFilter from "./contactsOps";
 
 const initialState = {
   filters: {
@@ -16,11 +14,6 @@ const slice = createSlice({
       state.filters.name = action.payload;
     },
   },
-  // extraReducers: (builder) => {
-  //   builder.addCase(changeFilter.fulfilled, (state, action) => {
-  //     state.filters.name = action.payload.name;
-  //   });
-  // },
 });
 
 export const selectNameFilter = (state) => state.filters.filters.name;

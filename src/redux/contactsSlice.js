@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { addContacts, deleteContacts, fetchContacts } from "./contactsOps";
 // import contacts from "../components/contacts.json";
 
@@ -21,12 +21,6 @@ const slice = createSlice({
   //     state.loading = false;
   //   },
 
-  //   setIsLoading: (state, action) => {
-  //     state.loading = action.payload;
-  //   },
-  //   setError: (state, action) => {
-  //     state.error = action.payload;
-  //   },
   //   addContact: (state, action) => {
   //     state.contacts.items.push(action.payload);
   //   },
@@ -50,18 +44,54 @@ const slice = createSlice({
         state.contacts.items = state.contacts.items.filter(
           (contact) => contact.id !== action.payload
         );
-      });
+      })
+
+      .addMatcher(
+        isAnyOf(
+          fetchContacts.pending,
+          deleteContacts.pending,
+          addContacts.pending
+        ),
+        (state, action) => {
+          state.loading = true;
+          state.error = null;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          fetchContacts.fulfilled,
+          deleteContacts.fulfilled,
+          addContacts.fulfilled
+        ),
+        (state, action) => {
+          state.loading = false;
+          state.error = null;
+        }
+      )
+
+      .addMatcher(
+        isAnyOf(
+          fetchContacts.rejected,
+          deleteContacts.rejected,
+          addContacts.rejected
+        ),
+        (state, action) => {
+          state.loading = false;
+          state.error = action.payload;
+        }
+      );
   },
 });
 
 export const selectContacts = (state) => state.contacts.contacts.items;
 export const selectLoader = (state) => state.contacts.loading;
+export const selectError = (state) => state.contacts.error;
 
 export const contactsReducer = slice.reducer;
-export const {
-  addContact,
-  deleteContact,
-  fetchDataSuccess,
-  setIsLoading,
-  setError,
-} = slice.actions;
+// export const {
+//   addContact,
+//   deleteContact,
+//   fetchDataSuccess,
+//   setIsLoading,
+//   setError,
+// } = slice.actions;

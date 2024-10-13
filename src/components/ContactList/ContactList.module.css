@@ -3,6 +3,13 @@
   padding: 0;
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
+}
+
+.wrapperLoader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 }

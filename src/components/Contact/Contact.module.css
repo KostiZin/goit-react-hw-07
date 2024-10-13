@@ -35,4 +35,6 @@
   border-radius: 8px;
   font-weight: bold;
   display: flex;
+  min-width: 272px;
+  max-height: 88px;
 }
